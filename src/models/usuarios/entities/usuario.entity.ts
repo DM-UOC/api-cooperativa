@@ -1,7 +1,8 @@
 import { prop } from "@typegoose/typegoose";
 import { ObjectId } from "mongoose";
+import { AuditoriaEntity } from "@models/auditoria/entities/auditoria.entity";
 
-export class Usuario {
+export class UsuarioEntity {
 
   readonly _id: ObjectId;
   @prop({ required: true })
@@ -14,4 +15,7 @@ export class Usuario {
   fecha_nacimiento!: Date;
   @prop({ required: true })
   correos: string[];
+  @prop({ type: AuditoriaEntity, _id: false })
+  auditoria: AuditoriaEntity;
+
 }
