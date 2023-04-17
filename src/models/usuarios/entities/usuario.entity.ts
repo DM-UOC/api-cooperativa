@@ -1,6 +1,6 @@
 import { prop } from "@typegoose/typegoose";
 import { ObjectId } from "mongoose";
-import { AuditoriaEntity } from "@models/auditoria/entities/auditoria.entity";
+import { AuditoriaEntity } from "@app/src/models/comun/auditoria/entities/auditoria.entity";
 
 export class UsuarioEntity {
 
