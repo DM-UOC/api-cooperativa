@@ -1,0 +1,97 @@
+---
+production: &default
+  port: 3001
+  security:
+    secret: 933593b7aedb2c018fab87fb5ada6a2c
+    maxAge: 60 * 60 # 60 minutos de duración # 60 * 60 * 24 <-> 24 horas de duración...
+    tokenServer:
+      url: https://seguridad.presidencia.gob.ec
+      port: 443
+      prefijo: '/api-seg'
+      controller: /auth/check/token
+      error: JsonWebTokenError
+  dbServer:
+    mongoDb:
+      host: DB_MONGO_HOST
+      puerto: DB_MONGO_PORT
+      dbAgenda:
+        dataBase: DB_AGENDA_NOMBRE
+        dbUser: DB_AGENDA_USER
+        dbPassword: DB_AGENDA_PASSWORD
+        conName: conAgenda
+    postgres:
+      type: postgres
+      host: BD_POSTGRES_HOST
+      port: DB_POSTGRES_PUERTO
+      dataBase: DB_POSTGRES_DB
+      dbUser: DB_POSTGRES_USER
+      dbPassword: DB_POSTGRES_PASSWORD        
+  gqlServer:
+    host: localhost
+  rutas:
+    imagenes:
+      raiz: public
+      carga: uploads    
+  remitentes:
+    dominio: '@presidencia.gob.ec'
+    from: papp
+    to: reaf
+  emailServer:
+    url: 'http://notifisistemas.presidencia.gob.ec/sender/email/'
+    plantilla:
+      certificacion: papp/certificacion    
+  cadenas:
+    formatos:
+      base64: data:image/jpeg;base64
+      fechas:
+        anio:
+          latino: DD/MM/YYYY
+  catalogos:
+    autoridades: TIP_AUTORIDADES
+
+stage: &stage
+  <<: *default
+
+test: &latest
+  <<: *stage
+
+development:
+  <<: *latest
+  serverPort: 3012
+  security:
+    secret: 933593b7aedb2c018fab87fb5ada6a2c
+    maxAge: 60 * 60 # 60 minutos de duración # 60 * 60 * 24 <-> 24 horas de duración...
+    tokenServer:
+      url: http://10.4.1.89
+      port: 3005
+      prefijo: '/api-seg'
+      controller: /auth/check/token
+      error: JsonWebTokenError
+  dbServer:
+    mongoDb:
+      host: DB_MONGO_HOST
+      puerto: DB_MONGO_PORT
+      dbAgenda:
+        dataBase: DB_AGENDA_NOMBRE
+        dbUser: DB_AGENDA_USER
+        dbPassword: DB_AGENDA_PASSWORD
+        conName: conAgenda
+    postgres:
+      type: postgres
+      host: BD_POSTGRES_HOST
+      port: DB_POSTGRES_PUERTO
+      dataBase: DB_POSTGRES_DB
+      dbUser: DB_POSTGRES_USER
+      dbPassword: DB_POSTGRES_PASSWORD        
+  rutas:
+    imagenes:
+      raiz: public
+      carga: uploads
+  gqlServer:
+    host: localhost
+  cadenas:
+    formatos:
+      base64: data:image/jpeg;base64
+      fechas:
+        anio:
+          latino: DD/MM/YYYY

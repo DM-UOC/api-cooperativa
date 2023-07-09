@@ -1,7 +1,9 @@
-import moment from "moment";
+import * as moment from "moment-timezone";
 
 export class UtilitariosFechas {
-  static retornaFechaActual(): Date {
-    return moment().utc().toDate();
+
+  static retornaFechaActual(): string {
+    return moment.tz("America/Guayaquil").format();
   }
+    
 }

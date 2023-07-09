@@ -1,0 +1,28 @@
+{
+  "apps": [
+    {
+      "name": "api-cooperativa",
+      "script": "npm",
+      "args": "run start:debug",
+      "ignore-watch": [
+        "./node_modules"
+      ],
+      "watch_options": {
+        "usePolling": true
+      },
+      "max_memory_restart": "200M",
+      "error_file": "./logs/app-error.log",
+      "out_file": "./logs/app-out.log",
+      "env": {
+          "NODE_ENV": "development",
+          "ENCRYPT_ALGORITHM": "aes-256-cbc",
+          "ENCRYPT_KEY": "*key_32_caracteres_para_funcionar",
+          "DB_MONGO_HOST": "10.4.1.24",
+          "DB_MONGO_PORT": "27017",
+          "DB_MONGO_NOMBRE": "dbAgenda",
+          "DB_MONGO_USER": "usDbAgendaWeb",
+          "DB_MONGO_PASSWORD": "desarrollo"
+      }
+    }
+  ]  
+}
